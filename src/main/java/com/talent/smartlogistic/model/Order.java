@@ -1,5 +1,6 @@
 package com.talent.smartlogistic.model;
 
+import com.talent.smartlogistic.validator.UniqueId;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,16 +11,18 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder(toBuilder = true)
 public class Order implements Comparable<Order> {
-    @NotNull(message = "Id is required")
-    private int id;
+    @NotNull(message = "id is required")
+    @Min(value = 1, message = "id must be greater than 0")
+    @UniqueId
+    private Integer id;
 
-    @NotBlank(message = "Customer name is required")
+    @NotBlank(message = "customerName is required")
     private String customerName;
 
-    @Min(value = 1, message = "Volume must be greater than 0")
+    @Min(value = 1, message = "volume must be greater than 0")
     private int volume;
 
-    @Min(value = 1, message = "Price must be greater than 0")
+    @Min(value = 1, message = "price must be greater than 0")
     private long price;
 
     @Override

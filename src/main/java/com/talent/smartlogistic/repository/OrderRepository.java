@@ -45,14 +45,6 @@ public class OrderRepository {
     }
 
     public boolean add(Order order) {
-        orders.stream()
-                .map(Order::getId)
-                .filter(id -> id.equals(order.getId()))
-                .findAny()
-                .ifPresent(id -> {
-                    throw new RuntimeException("Order with id " + id + " already exist");
-                });
-
         return orders.orderedAdd(order);
     }
 
