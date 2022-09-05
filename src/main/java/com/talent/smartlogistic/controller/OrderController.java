@@ -23,7 +23,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public boolean save(@Valid @RequestBody Order order) {
-        return orderRepository.add(order);
+    public Order save(@Valid @RequestBody Order order) {
+        orderRepository.add(order);
+        return order;
     }
 }
